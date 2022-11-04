@@ -1,6 +1,15 @@
 const CustomersModel = require('../models/customers');
 const {crypto} = require('../utils/password');
 
+const defaultTitle = "Cadatro de Clientes";
+
+const index = (req, res) =>{
+    res.render('register', {
+        title: defaultTitle
+  });
+
+};
+
 const add = async (req, res) => {
   //destruturação doo body
   const {
@@ -22,9 +31,23 @@ const add = async (req, res) => {
 
   register.save();
 
-  res.send("Cadatro realizado");
+  res.render('register',{
+    title: defaultTitle,
+    message: "cadastro realizado com sucesso!"
+
+  });
 };
 
-module.exports = {
-  add,
+const listUsers = async (req, res) => {
+  const users = await CustomersModel.find();
+  res.render('listUsers', {
+    title: "listagem de Usuários",
+    users,
+  });
 }
+
+module.exports = {
+  index,
+  add,
+  listUsers
+};
