@@ -1,7 +1,11 @@
 const express = require('express');
 const path = require('path');
+const db = require('./database')
 
 const app = express();
+
+//conexão ao banco de dados
+db.connect;
 
 //definindo a template engine ejs
 app.set('view engine', 'ejs');
@@ -24,4 +28,4 @@ app.use((req, res) => res.send("Página não encontrada!"));
 
 //executando o servidor
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server is listening on port ${port}`));
+app.listen(port, () => console.log(`Server is listening on port ${port}`));;
