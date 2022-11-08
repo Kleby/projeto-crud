@@ -10,6 +10,8 @@
       <li>
         <%= user.name %> - <%= user.email %> - Idade:<%= user.age %> 
         <a href="/edit?id=<%= user._id %>">[Editar]</a> 
+        <a href="/remove/<%= user._id %>" id="btnRemove">[Remover]</a> 
+
       </li>
     <% }); %>
   </ul>

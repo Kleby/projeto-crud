@@ -1,6 +1,7 @@
 const CustomersModel = require('../models/customers');
 const {crypto} = require('../utils/password');
 
+
 const defaultTitle = "Cadatro de Clientes";
 
 const index = (req, res) =>{
@@ -80,11 +81,20 @@ const edit = async (req, res) => {
   });
 };
 
+const remove = async (req, res) => {  
+  const id = req.params.id;
+  const remove = await CustomersModel.deleteOne({_id  : id});
+  if(remove.acknowledged){
+    res.redirect('/list');
+  }
+
+};
 
 module.exports = {
   index,
   add,
   list,
   formEdit,
-  edit
+  edit,
+  remove
 };
